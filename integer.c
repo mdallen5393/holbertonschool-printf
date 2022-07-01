@@ -30,11 +30,14 @@ char *dipr(va_list n)
 	}
 
 	numStr = malloc(sizeof(*numStr) * (len + 1));
+	
+	i = 0;
 	if (n < 0) {
 		numStr[0] = '-';
+		i = 1;
 	}
 
-	for (i = 0; i < len; i++)
+	for (; i < len; i++)
 	{
 		numStr[len - i - 1] = n % 10 + '0';
 		n /= 10;
