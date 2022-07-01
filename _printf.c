@@ -12,24 +12,10 @@ int _printf(const char *format, ...)
 	char buffer[1024];
 	char *(*f)(va_list);
 
-	count = 0;
-	i = 0;
-	while (format[i] != '\0')
-	{
-		if (format[i] == '%')
-		{
-			if (format[i + 1] == '%')
-				i++;
-			else
-				count++;
-		}
-		i++
-
-	}
-
+	count = calcNumFmts(format);
 	numArgs = 0;
 	while (va_arg != NULL)
-		numArgs ++;
+		numArgs++;
 
 	if (numArgs != count)
 		return (NULL);
@@ -46,12 +32,13 @@ int _printf(const char *format, ...)
 			}
 			else
 			{
-				f = get_func(format[i]);
+				f = get_func(format[i + 1]);
 				
 				if (f == NULL)
 					exit(98);
 
 				strcat(buffer, f(va_arg)); //TODO
+				//TODO j += length of passed int
 
 			}
 			i++;
@@ -96,4 +83,46 @@ void *(*get_func(char *s))(va_list)
 		i++;
 
 	return (operations[i].f);
+}
+
+/**
+ * _strlen - finds the length of a string
+ * @s: string input
+ * Return: 0 if s is NULL, integer length (excluding '\0') otherwise
+ */
+int _strlen(char *s)
+{
+	int len = 0;
+	
+	if (s == NULL)
+		return (0);
+
+	while (s[len] != '\0')
+		len++;
+
+	return (len);
+}
+
+/**
+ */
+int calcNumFmts(char *format)
+{
+	int i = 0, numFmts = 0;
+	
+	if (format == NULL)
+		return (0);
+	
+	while (format[i] != '\0')
+	{
+		if (format[i] == '%')
+		{
+			if (format[i + 1] == '%')
+				i++;
+			else
+				numFmts++;
+		}
+		i++
+	}
+
+	return (numFmts);
 }
