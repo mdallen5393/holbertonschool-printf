@@ -40,4 +40,6 @@ char *ppr(va_list);
 void *(*get_func(char *s))(va_list);
 int _printf(const char *format, ...);
 
+/* other functions */
+int _putchar(char c);
 #endif
