@@ -4,7 +4,8 @@
 
 /* STANDARD LIBRARIES */
 #include <stdarg.h>
-
+#include <limits.h>
+#include <stdlib.h>
 
 /* STRUCTS */
 
