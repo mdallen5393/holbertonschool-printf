@@ -34,7 +34,6 @@ char *itoa(int); //convert int to string
 
 /* character.c */
 char *cpr(va_list);
-char *ppr(va_list);
 
 /* _printf.c */
 void *(*get_func(char *s))(va_list);
