@@ -1,4 +1,5 @@
-#include "main.h"
+#include "testmain.h"
+
 
 /**
  * dipr - convert integer types to strings and returns pointer to string
@@ -7,11 +8,21 @@
  */
 char *dipr(va_list n)
 {
-	int len, i, nCopy;
+	int len, i, nCopy, curr;
 	char *numStr;
 
 	nCopy = n;
 	len = 1;
+
+	if (n == INT_MIN)
+		return (spr("-2147483648"));
+
+	if (n < 0)
+	{
+		len++;
+		n *= -1;
+	}
+
 	while (nCopy / 10 != 0)
 	{
 		nCopy /= 10;
@@ -19,6 +30,9 @@ char *dipr(va_list n)
 	}
 
 	numStr = malloc(sizeof(*numStr) * (len + 1));
+	if (n < 0) {
+		numStr[0] = '-';
+	}
 
 	for (i = 0; i < len; i++)
 	{
