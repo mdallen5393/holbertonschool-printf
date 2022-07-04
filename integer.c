@@ -8,30 +8,31 @@
  */
 char *dipr(va_list n)
 {
-	int len, i, nCopy;
+	int len, i, copy, input;
 	char *numStr;
-
-	nCopy = *n;
+	
+	input = (int)(*n);
+	copy = (int)(*n);
 	len = 1;
 
-	if (*n == INT_MIN)
-		return (spr("-2147483648"));
+	if (input == INT_MIN)
+		return ("-2147483648");
 
-	if (*n < 0)
+	if (input < 0)
 	{
 		len++;
-		*n *= -1;
+		input *= -1;
 	}
 
-	while (*n / 10 != 0)
+	while (input / 10 != 0)
 	{
-		*n /= 10;
+		input /= 10;
 		len++;
 	}
 
 	numStr = malloc(sizeof(*numStr) * (len + 1));
 	
-	if (nCopy < 0) {
+	if (copy < 0) {
 		numStr[0] = '-';
 		len--;
 		i = 1;
@@ -39,8 +40,8 @@ char *dipr(va_list n)
 
 	for (; i < len; i++)
 	{
-		numStr[len - i - 1] = *n % 10 + '0';
-		*n /= 10;
+		numStr[len - i - 1] = input % 10 + '0';
+		input /= 10;
 	}
 
 	return (numStr);

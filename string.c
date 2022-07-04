@@ -8,7 +8,7 @@
 char *spr(va_list s)
 {
 	int i;
-	char *str;
+	static char *str;
 	int len = 0;
 
 	while (s[len] != '\0')
