@@ -23,17 +23,17 @@ char *dipr(va_list n)
 		n *= -1;
 	}
 
-	while (nCopy / 10 != 0)
+	while (n / 10 != 0)
 	{
-		nCopy /= 10;
+		n /= 10;
 		len++;
 	}
 
 	numStr = malloc(sizeof(*numStr) * (len + 1));
 	
-	i = 0;
-	if (n < 0) {
+	if (nCopy < 0) {
 		numStr[0] = '-';
+		len--;
 		i = 1;
 	}
 
