@@ -27,7 +27,6 @@ char *spr(va_list);
 
 /* integer.c */
 char *dipr(va_list);
-char *itoa(int); //convert int to string
 
 /* float.c */
 
@@ -36,7 +35,7 @@ char *itoa(int); //convert int to string
 char *cpr(va_list);
 
 /* _printf.c */
-void *(*get_func(char *s))(va_list);
+void *(*get_func(char s))(va_list);
 int _printf(const char *format, ...);
 int cpstr(char *s);
 int _strlen(char *s);

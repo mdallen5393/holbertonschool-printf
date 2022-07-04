@@ -1,4 +1,4 @@
-#include "testmain.h"
+#include "main.h"
 
 
 /**
@@ -8,24 +8,24 @@
  */
 char *dipr(va_list n)
 {
-	int len, i, nCopy, curr;
+	int len, i, nCopy;
 	char *numStr;
 
-	nCopy = n;
+	nCopy = *n;
 	len = 1;
 
-	if (n == INT_MIN)
+	if (*n == INT_MIN)
 		return (spr("-2147483648"));
 
-	if (n < 0)
+	if (*n < 0)
 	{
 		len++;
-		n *= -1;
+		*n *= -1;
 	}
 
-	while (n / 10 != 0)
+	while (*n / 10 != 0)
 	{
-		n /= 10;
+		*n /= 10;
 		len++;
 	}
 
@@ -39,8 +39,8 @@ char *dipr(va_list n)
 
 	for (; i < len; i++)
 	{
-		numStr[len - i - 1] = n % 10 + '0';
-		n /= 10;
+		numStr[len - i - 1] = *n % 10 + '0';
+		*n /= 10;
 	}
 
 	return (numStr);

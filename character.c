@@ -7,7 +7,10 @@
  */
 char *cpr(va_list c)
 {
-	char character[1] = c;
+	/*char character[1];
+
+	character[0] = (char)(*c);
 	
-	return(character);
+	return(character);*/
+	return (&c);
 }
