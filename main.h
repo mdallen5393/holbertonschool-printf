@@ -38,7 +38,9 @@ char *cpr(va_list);
 /* _printf.c */
 void *(*get_func(char *s))(va_list);
 int _printf(const char *format, ...);
-
+int cpstr(char *s);
+int _strlen(char *s);
+int calcNumFmts(char *format);
 /* other functions */
 int _putchar(char c);
 #endif
