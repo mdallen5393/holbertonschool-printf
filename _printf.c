@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 	char buffer[1024];
 	char *(*f)(va_list);
 	char *newStr;
-	va_start(arg, format)
+	va_start(arg, format);
 
 	while (va_arg(arg, void) != NULL)
 		numArgs++;
@@ -34,7 +34,7 @@ int _printf(const char *format, ...)
 					exit(98);
 
 				newStr = f(va_arg(arg, void));
-				strcat(buffer, newStr);
+				_strcat(buffer, newStr);
 				j += _strlen(newStr);
 			}
 			i++;

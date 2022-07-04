@@ -7,10 +7,9 @@
  */
 char *cpr(va_list c)
 {
-	/*char character[1];
+	static char *character;
 
-	character[0] = (char)(*c);
+	character = (char)(*c);
 	
-	return(character);*/
-	return (&c);
+	return (character);
 }
