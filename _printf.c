@@ -3,69 +3,51 @@
 /**
  * _printf - prints output according to a format
  * @format: format string to print
- * Return: int number of characters printed 
+ * Return: int number of characters printed
  */
 int _printf(const char *format, ...)
 {
-	int i, j, count, numArgs, numChars;
+	int i, j, numArgs, numChars;
 	va_start arg;
 	char buffer[1024];
 	char *(*f)(va_list);
+	char *newStr;
 
-	count = calcNumFmts(format);
-	numArgs = 0;
 	while (va_arg != NULL)
 		numArgs++;
 
-	if (numArgs != count)
+	if (numArgs != calcNumFmts(format))
 		return (NULL);
 
-	i = 0;
-	j = 0;
-	while (format[i] != '\0')
+	for (i = 0, j = 0; format[i] != '\0'; i++, j++)
 	{
 		if (format[i] == '%')
 		{
 			if (format[i + 1] == '%')
-			{
 				buffer[j] = format[i];
-			}
 			else
 			{
 				f = get_func(format[i + 1]);
-				
+
 				if (f == NULL)
 					exit(98);
 
-				strcat(buffer, f(va_arg)); //TODO
-				//TODO j += length of passed int
-
+				newStr = f(va_arg);
+				strcat(buffer, newStr);
+				j += _strlen(newStr);
 			}
 			i++;
 		}
 		else
-		{
 			buffer[j] = format[i];
-		}
-
-		i++;
-		j++;
 	}
 
-	numChars = 0;
-	while (buffer[numChars] != '\0')
-	{
-		_putchar(buffer[numChars]); //TODO
-		numChars++;
-
-	}
-
-	return (numChars);
+	return (cpstr(buffer));
 }
 
 /**
  * get_func - finds function to use for adding to buffer
- * @va_list: list of optional arguments passed to _printf
+ * @s: character used to find correct function
  * Return: pointer to desired function
  */
 void *(*get_func(char *s))(va_list)
@@ -93,7 +75,7 @@ void *(*get_func(char *s))(va_list)
 int _strlen(char *s)
 {
 	int len = 0;
-	
+
 	if (s == NULL)
 		return (0);
 
@@ -104,14 +86,17 @@ int _strlen(char *s)
 }
 
 /**
+ * calcNumFmts - calculates number of format specifiers in a string
+ * @format: input format string
+ * Return: integer number of format strings.
  */
 int calcNumFmts(char *format)
 {
 	int i = 0, numFmts = 0;
-	
+
 	if (format == NULL)
 		return (0);
-	
+
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
@@ -125,4 +110,22 @@ int calcNumFmts(char *format)
 	}
 
 	return (numFmts);
+}
+
+/**
+ * cpstr - count and print each character in a string
+ * @s: input string to print and count chars
+ * Return: number of characters in the string.
+ */
+int cpstr(char *s)
+{
+	int numChars = 0;
+
+	while (s[numChars] != '\0')
+	{
+		_putchar(s[numChars]);
+		numChars++;
+	}
+
+	return (numChars);
 }
