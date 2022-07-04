@@ -7,17 +7,18 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, j, numArgs, numChars;
-	va_start arg;
+	int i, j, numArgs;
+	va_list arg;
 	char buffer[1024];
 	char *(*f)(va_list);
 	char *newStr;
+	va_start(arg, format)
 
-	while (va_arg != NULL)
+	while (va_arg(arg, void) != NULL)
 		numArgs++;
 
 	if (numArgs != calcNumFmts(format))
-		return (NULL);
+		exit(98);
 
 	for (i = 0, j = 0; format[i] != '\0'; i++, j++)
 	{
@@ -32,7 +33,7 @@ int _printf(const char *format, ...)
 				if (f == NULL)
 					exit(98);
 
-				newStr = f(va_arg);
+				newStr = f(va_arg(arg, void));
 				strcat(buffer, newStr);
 				j += _strlen(newStr);
 			}
@@ -50,7 +51,7 @@ int _printf(const char *format, ...)
  * @s: character used to find correct function
  * Return: pointer to desired function
  */
-void *(*get_func(char *s))(va_list)
+void *(*get_func(char s))(va_list)
 {
 	format operations[] = {
 		{'d', dipr},
@@ -90,7 +91,7 @@ int _strlen(char *s)
  * @format: input format string
  * Return: integer number of format strings.
  */
-int calcNumFmts(char *format)
+int calcNumFmts(const char *format)
 {
 	int i = 0, numFmts = 0;
 
@@ -106,7 +107,7 @@ int calcNumFmts(char *format)
 			else
 				numFmts++;
 		}
-		i++
+		i++;
 	}
 
 	return (numFmts);
