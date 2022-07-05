@@ -11,15 +11,14 @@ char *(*get_func(char s))(va_list)
 		{'d', dipr},
 		{'i', dipr},
 		{'c', cpr},
-		{'s', spr},
-		{'\0', NULL}
+		{'s', spr}
 	};
 	int i = 0;
 
 	while (s != operations[i].fmt)
 		i++;
 
-	if (i > 4)
+	if (i > 3)
 		return (NULL);
 
 	return (operations[i].f);
