@@ -9,9 +9,7 @@ int _printf(const char *format, ...)
 {
 	int i, j, count = 0;
 	va_list arg;
-	char buffer[2048] = {'\0'};
-	char *(*f)(va_list);
-	char *newStr;
+	char buffer[2048] = {'\0'}, *(*f)(va_list), *newStr;
 
 	if (format == NULL)
 		return (-1);
@@ -20,6 +18,8 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
+			if (format[i + 1] == '\0')
+				return (-1);
 			if (format[i + 1] == '%')
 				buffer[j] = format[i];
 			else
