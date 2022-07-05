@@ -37,7 +37,10 @@ int _printf(const char *format, ...)
 					_strcat(buffer, newStr);
 					j += _strlen(newStr) - 1;
 					if (newStr[0] == '\0' && newStr[1] == '\0')
+					{
 						count++;
+						_putchar('\0');
+					}
 				}
 			}
 			i++;
