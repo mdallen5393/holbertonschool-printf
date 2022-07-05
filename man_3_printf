@@ -1,0 +1,86 @@
+.Dd 7/6/22               \" DATE
+.Dt _printf 3      \" Program name and manual section number
+.Os Allen/French
+.Sh NAME                 \" Section Header - required - don't modify
+.Nm _printf()
+.\" The following lines are read in generating the apropos(man -k) database. Use only key
+.\" words here as the database is built based on the words here and in the .ND line.
+.Nd formatted output conversion
+.Sh SYNOPSIS             \" Section Header - required - don't modify
+int _printf(const char
+.Ar *format
+, ...);
+.Sh DESCRIPTION          \" Section Header - required - don't modify
+.Nm produces output according to a
+.Ar format
+string (see below) passed into the function.
+Output is sent to stdout.
+The
+.Ar format
+string controls the output of the function by specifying how each variable should be printed.
+The function is variadic, allowing for any number of variables to be passed into it, so long as there are the same number of corresponding format specifiers.
+.Pp
+The format string consists of characters and format specifiers.
+Format specifiers are used to take the place of variables of their corresponding type.
+They are of the form "%[character]".
+Each format specifier corresponds to a variable passed into the function, in order of appearance.
+The following is a list of format specifiers that have been implemented into this program:
+.Pp
+.Bl -tag -width -indent
+.It %d, %i
+Used to print signed integer data types.
+.It %c
+Used to print character data types.
+.It %s
+Used to print string data types.
+.It %%
+Used to print a literal percent (%) character.
+.El
+.Pp
+.Sh RETURN VALUE
+Upon successful return,
+.Nm
+returns the total number of characters printed.
+Upon error, a negative value is returned.
+.Pp
+.Sh FILES                \" File used or created by the topic of the man page
+.B1 -tag -width -indent
+.It CHAR.C
+contains functions for character print operations
+.It FP.C
+contains functions for floating point number print operations
+.It HELPERS.C
+contains helper functions, including get_func(), cpstr(), _putchar(),
+_strcat(), and _strlen()
+.It INT.C
+contains functions for integer number print operations
+.It MAIN.H
+header file containing structs, function prototypes, and library includes
+.It _PRINTF.C
+main file containing _printf() function
+.It STR.C
+contains functions for string print operations
+.El                      \" Ends the list
+.Sh BUGS              \" Document known, unremedied bugs
+This implementation of
+.Nm
+uses a buffer of size 1024 to store the string to be printed.
+Care should be taken to not overflow the buffer.
+.Sh EXAMPLES
+.Bl -tag -width -indent
+.It To print a time:
+
+_printf("The time is %d:%d %s.\n");
+
+Output: The time is 2:43 PM.
+
+.It To print a name:
+
+_printf("Hello, %s, my name is %s.\n");
+
+Output: Hello Nick, my name is Matthew.
+.El
+.Sh SEE ALSO
+.\" List links in ascending order by section, alphabetically within a section.
+.\" Please do not reference files that do not exist without filing a bug report
+.Xr printf 3

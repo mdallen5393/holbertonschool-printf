@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
  * cpr - converts char to string
  * @c: char to convert
@@ -7,9 +7,10 @@
  */
 char *cpr(va_list c)
 {
-	static char *character;
+	static char character[2];
 
-	character = (char)(*c);
-	
+	character[0] = (char)va_arg(c, int);
+	character[1] = '\0';
+
 	return (character);
 }

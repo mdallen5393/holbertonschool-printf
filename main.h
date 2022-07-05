@@ -6,40 +6,43 @@
 #include <stdarg.h>
 #include <limits.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 /* STRUCTS */
 
 /**
- * struct op - struct for each format
- * @op: the operator
+ * struct format - struct for each format
+ * @fmt: the format specifier
  * @f: the function associated
  */
 typedef struct format
 {
-    char fmt;
-    char *(*f)(va_list);
+	char fmt;
+	char *(*f)(va_list);
 } format;
 
 
 /* FUNCTION PROTOTYPES */
-/* string.c */
+/* str.c */
 char *spr(va_list);
 
-/* integer.c */
+/* int.c */
 char *dipr(va_list);
 
-/* float.c */
+/* fp.c */
 
 
-/* character.c */
+/* char.c */
 char *cpr(va_list);
 
 /* _printf.c */
-void *(*get_func(char s))(va_list);
 int _printf(const char *format, ...);
+
+/* helpers.c */
+char *(*get_func(char s))(va_list);
 int cpstr(char *s);
-int _strlen(char *s);
-int calcNumFmts(char *format);
-/* other functions */
 int _putchar(char c);
+char *_strcat(char *s1, char *s2);
+int _strlen(char *s);
+
 #endif
