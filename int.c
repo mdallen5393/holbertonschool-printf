@@ -30,7 +30,7 @@ char *dipr(va_list n)
 		len++;
 	}
 	numStr = malloc(sizeof(*numStr) * (len + 1));
-	
+
 	if (numStr == NULL)
 		exit(98);
 
