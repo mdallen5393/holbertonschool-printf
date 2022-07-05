@@ -4,8 +4,8 @@
 
 
 
-## Description: 
-C implementation of the standard library function printf. Printf is used to print formatted strings to standard output. It is a variadic function that takes a format string followed by a number of optional variables and returns the number of characters printed.  
+## Description:
+C implementation of the standard library function printf. Printf is used to print formatted strings to standard output. It is a variadic function that takes a format string followed by a number of optional variables and returns the number of characters printed.
 
 
 
@@ -15,7 +15,7 @@ C implementation of the standard library function printf. Printf is used to prin
 ### Printing string literals:
 __Format:__ `_printf("string to print\n");`
 Description: _Prints whatever is inserted between double-quotes.  Use the backslash character (\) to print special characters such as '\n' to print a newline character._
-  
+
 
 
 ### Using Format Specifiers:
