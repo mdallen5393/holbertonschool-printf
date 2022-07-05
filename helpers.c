@@ -12,6 +12,7 @@ char *(*get_func(char s))(va_list)
 		{'i', dipr},
 		{'c', cpr},
 		{'s', spr},
+		{'\0', NULL}
 	};
 	int i = 0;
 
