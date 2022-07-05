@@ -13,6 +13,8 @@ int _printf(const char *format, ...)
 	char *(*f)(va_list);
 	char *newStr;
 
+	if (format == NULL)
+		return (-1);
 	va_start(arg, format);
 	for (i = 0, j = 0; format[i] != '\0'; i++, j++)
 	{
@@ -44,6 +46,5 @@ int _printf(const char *format, ...)
 			buffer[j] = format[i];
 	}
 	va_end(arg);
-	count += cpstr(buffer);
-	return (count);
+	return (count + cpstr(buffer));
 }
