@@ -7,5 +7,10 @@
  */
 char *spr(va_list s)
 {
-	return (va_arg(s, char *));
+	char *str = va_arg(s, char *);
+
+	if (str == NULL)
+		return ("(null)");
+
+	return (str);
 }

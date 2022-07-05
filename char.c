@@ -7,6 +7,9 @@
  */
 char *cpr(va_list c)
 {
+	if (!c)
+		return ("");
+
 	static char character[2];
 
 	character[0] = (char)va_arg(c, int);
