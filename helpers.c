@@ -16,11 +16,11 @@ char *(*get_func(char s))(va_list)
 	int i = 0;
 
 	while (s != operations[i].fmt)
+	{
 		i++;
-
-	if (i > 3)
-		return (NULL);
-
+		if (i > 3)
+			return (NULL);
+	}
 	return (operations[i].f);
 }
 
