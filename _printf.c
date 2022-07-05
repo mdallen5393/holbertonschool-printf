@@ -24,7 +24,6 @@ int _printf(const char *format, ...)
 			else
 			{
 				f = get_func(format[i + 1]);
-
 				if (f == NULL)
 				{
 					buffer[j] = format[i];
