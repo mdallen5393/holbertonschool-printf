@@ -42,8 +42,6 @@ int _printf(const char *format, ...)
 		}
 		else
 			buffer[j] = format[i];
-
-/*		printf("%c, %d, %d: %s\n", format[i], i, j, buffer);*/
 	}
 	va_end(arg);
 	count += cpstr(buffer);
