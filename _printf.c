@@ -26,11 +26,17 @@ int _printf(const char *format, ...)
 				f = get_func(format[i + 1]);
 
 				if (f == NULL)
-					exit(98);
-
-				newStr = f(arg);
-				_strcat(buffer, newStr);
-				j += _strlen(newStr) - 1;
+				{
+					buffer[j] = format[i];
+					buffer[j + 1] = format[i + 1];
+					j++;
+				}
+				else
+				{
+					newStr = f(arg);
+					_strcat(buffer, newStr);
+					j += _strlen(newStr) - 1;
+				}
 			}
 		i++;
 		}
