@@ -1,8 +1,5 @@
 #include "main.h"
 #include <stdio.h>
-
-int ip(int count);
-
 /**
  * _printf - prints output according to a format
  * @format: format string to print
@@ -19,10 +16,10 @@ int _printf(const char *format, ...)
 	va_start(arg, format);
 	for (i = 0, j = 0; format[i] != '\0'; i++, j++)
 	{
-		if (format[i] == '%' && format[i + 1] == '\0')
-			return (-1);
 		if (format[i] == '%')
 		{
+			if (format[i + 1] == '\0')
+				return (-1);
 			if (format[i + 1] == '%')
 				buffer[j] = format[i];
 			else
@@ -31,7 +28,8 @@ int _printf(const char *format, ...)
 				if (f == NULL)
 				{
 					buffer[j] = format[i];
-					buffer[++j] = format[i + 1];
+					buffer[j + 1] = format[i + 1];
+					j++;
 				}
 				else
 				{
@@ -39,7 +37,10 @@ int _printf(const char *format, ...)
 					_strcat(buffer, newStr);
 					j += _strlen(newStr) - 1;
 					if (newStr[0] == '\0' && newStr[1] == '\0')
-						count = ip(count);
+					{
+						count++;
+						_putchar('\0');
+					}
 				}
 			}
 			i++;
@@ -49,17 +50,4 @@ int _printf(const char *format, ...)
 	}
 	va_end(arg);
 	return (count + cpstr(buffer));
-}
-
-/**
- * ip - increment variable and print null character
- * @count: var to increment
- * Return: incremented variable
- *
- * Description: purpose - to satisfy the betty linter's <40 line req.
- */
-int ip(int count)
-{
-	_putchar('\0');
-	return (count + 1);
 }
