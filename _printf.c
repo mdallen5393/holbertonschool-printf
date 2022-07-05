@@ -7,9 +7,9 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, j;
+	int i, j, count = 0;
 	va_list arg;
-	char buffer[5000] = {'\0'};
+	char buffer[2048] = {'\0'};
 	char *(*f)(va_list);
 	char *newStr;
 
@@ -34,9 +34,11 @@ int _printf(const char *format, ...)
 					newStr = f(arg);
 					_strcat(buffer, newStr);
 					j += _strlen(newStr) - 1;
+					if (newStr[0] == '\0' && newStr[1] == '\0')
+						count++;
 				}
 			}
-		i++;
+			i++;
 		}
 		else
 			buffer[j] = format[i];
@@ -44,6 +46,6 @@ int _printf(const char *format, ...)
 /*		printf("%c, %d, %d: %s\n", format[i], i, j, buffer);*/
 	}
 	va_end(arg);
-
-	return (cpstr(buffer));
+	count += cpstr(buffer);
+	return (count);
 }
