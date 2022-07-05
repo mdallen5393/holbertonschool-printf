@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdio.h>
 
 /**
  * dipr - convert integer types to strings and returns pointer to string
@@ -8,11 +8,11 @@
  */
 char *dipr(va_list n)
 {
-	int len, i, copy, input;
+	int len, i, copy, input, end;
 	char *numStr;
-	
-	input = (int)(*n);
-	copy = (int)(*n);
+
+	input = va_arg(n, int);
+	copy = input;
 	len = 1;
 
 	if (input == INT_MIN)
@@ -24,23 +24,23 @@ char *dipr(va_list n)
 		input *= -1;
 	}
 
-	while (input / 10 != 0)
+	while (copy / 10 != 0)
 	{
-		input /= 10;
+		copy /= 10;
 		len++;
 	}
-
 	numStr = malloc(sizeof(*numStr) * (len + 1));
-	
-	if (copy < 0) {
+
+	end = 0;
+	if (copy < 0)
+	{
 		numStr[0] = '-';
-		len--;
-		i = 1;
+		end = 1;
 	}
 
-	for (; i < len; i++)
+	for (i = len - 1; i >= end; i--)
 	{
-		numStr[len - i - 1] = input % 10 + '0';
+		numStr[i] = input % 10 + '0';
 		input /= 10;
 	}
 
