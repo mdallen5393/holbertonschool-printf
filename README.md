@@ -56,4 +56,5 @@ Ex 2: `_printf("Hello, %s, my name is %s.\n", name, "Nick");`
 
 ## Authors:
 **Nicholas French** | [github - MetaFrench](https://github.com/MetaFrench)
+
 **Matthew Allen** | [github - mdallen5393](https://github.com/mdallen5393)
